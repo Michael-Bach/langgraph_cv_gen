@@ -1,10 +1,13 @@
 from uuid import uuid4
 
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from langgraph.types import Command
 from pydantic import BaseModel
 
 from .graph import graph
+
+load_dotenv()
 
 app = FastAPI(title="LangGraph CV Generator", version="0.1.0")
 
