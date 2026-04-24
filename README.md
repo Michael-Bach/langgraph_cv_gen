@@ -1,8 +1,8 @@
 # LangGraph CV Generator
 
-A LangGraph + FastAPI pipeline that generates a tailored CV and cover letter from a job posting. Given a URL or pasted job description, it scores candidate fit across five dimensions, waits for human approval, drafts both documents in parallel, runs a structured reviewer agent, and compiles to PDF — with up to two automated revision cycles before final output.
+A rewrite of [Mads Lorentzen's CV generator](https://github.com/MadsLorentzen/ai-job-search) in the LangGraph + FastAPI stack. All credit for the original concept, pipeline design, and document generation approach goes to him — this repo is purely a re-implementation in the LangGraph environment.
 
-Portfolio demo for agentic AI tooling with [Claude Code](https://claude.ai/code).
+Given a job URL or pasted description, the pipeline scores candidate fit across five dimensions, waits for human approval, drafts a CV and cover letter in parallel, runs a structured reviewer agent, and compiles both to PDF — with up to two automated revision cycles before final output.
 
 ## Pipeline
 
