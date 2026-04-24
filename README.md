@@ -1,6 +1,8 @@
 # LangGraph CV Generator
 
-A LangGraph + FastAPI pipeline that generates tailored CVs and cover letters from job postings. Portfolio demo.
+A LangGraph + FastAPI pipeline that generates a tailored CV and cover letter from a job posting. Given a URL or pasted job description, it scores candidate fit across five dimensions, waits for human approval, drafts both documents in parallel, runs a structured reviewer agent, and compiles to PDF — with up to two automated revision cycles before final output.
+
+Portfolio demo for agentic AI tooling with [Claude Code](https://claude.ai/code).
 
 ## Pipeline
 
@@ -149,8 +151,10 @@ LANGCHAIN_PROJECT=langgraph-cv-gen
 ## Run Tests
 
 ```bash
-pytest -v
+pytest
 ```
+
+Tests use mocked LLM calls — no API key required.
 
 ## Project Structure
 
@@ -178,6 +182,3 @@ src/apply/
     └── 06-cover-letter-templates.md
 ```
 
-## Node Stubs
-
-All node functions currently raise `NotImplementedError`. Implement them in `src/apply/nodes/` to complete the pipeline. Each docstring describes the expected behaviour, model, and return shape.
