@@ -44,8 +44,8 @@ def review(state: ApplyState) -> dict:
 {profile["cover_letter_templates"]}
 
 ## Job Posting
-Company: {job.get("company")}
-Role: {job.get("role")}
+Company: {job.get("company", "Unknown")}
+Role: {job.get("role", "Unknown")}
 Full posting:
 {job.get("raw_text", "")}
 

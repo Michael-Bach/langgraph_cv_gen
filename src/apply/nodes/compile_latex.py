@@ -1,3 +1,4 @@
+import re
 import subprocess
 from pathlib import Path
 from apply.state import ApplyState
@@ -21,8 +22,9 @@ def compile_latex(state: ApplyState) -> dict:
     Returns: {"cv_pdf_path": str, "cover_letter_pdf_path": str}
     """
     job = state.get("job_parsed", {})
-    company = job.get("company", "unknown").lower().replace(" ", "_")
-    role = job.get("role", "unknown").lower().replace(" ", "_")
+    _slug = lambda s: re.sub(r"[^a-z0-9]+", "_", s.lower()).strip("_")
+    company = _slug(job.get("company", "unknown"))
+    role = _slug(job.get("role", "unknown"))
 
     _OUTPUT_DIR.mkdir(exist_ok=True)
 
