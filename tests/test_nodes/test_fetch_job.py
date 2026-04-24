@@ -1,9 +1,11 @@
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, ANY
 from apply.nodes.fetch_job import fetch_job
 
 
-def test_fetch_job_is_callable():
-    assert callable(fetch_job)
+def test_fetch_job_empty_state_returns_empty_text():
+    state = {}
+    result = fetch_job(state)
+    assert result == {"job_text": ""}
 
 
 def test_fetch_job_passthrough_when_no_url():
@@ -30,10 +32,16 @@ def test_fetch_job_fetches_and_strips_html():
     with patch("apply.nodes.fetch_job.httpx.get", return_value=mock_response) as mock_get:
         result = fetch_job(state)
 
-    mock_get.assert_called_once()
+    mock_get.assert_called_once_with(
+        "https://example.com/job",
+        timeout=15,
+        follow_redirects=True,
+        headers=ANY,
+    )
     assert "job_text" in result
     assert "ML Engineer" in result["job_text"]
     assert "ga()" not in result["job_text"]
+    assert "body{}" not in result["job_text"]
 
 
 def test_fetch_job_falls_back_on_exception():

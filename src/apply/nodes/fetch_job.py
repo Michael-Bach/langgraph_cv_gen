@@ -28,5 +28,5 @@ def fetch_job(state: ApplyState) -> dict:
         for tag in soup(["script", "style", "nav", "footer", "header"]):
             tag.decompose()
         return {"job_text": soup.get_text(separator="\n", strip=True)}
-    except Exception:
+    except Exception:  # intentionally broad: covers HTTP errors, parse failures, and timeouts
         return {"job_text": state.get("job_text", "")}
