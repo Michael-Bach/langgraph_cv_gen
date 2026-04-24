@@ -46,3 +46,13 @@ def test_review_critique_needs_revision_flag():
     )
     assert critique.needs_revision is True
     assert critique.quality_score == 0.6
+
+
+def test_revised_documents_model():
+    from apply.models import RevisedDocuments
+    doc = RevisedDocuments(
+        cv_latex=r"\documentclass{moderncv}...",
+        cover_letter_latex=r"\documentclass{cover}...",
+    )
+    assert doc.cv_latex.startswith(r"\documentclass")
+    assert doc.cover_letter_latex.startswith(r"\documentclass")

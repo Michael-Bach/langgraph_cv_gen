@@ -46,3 +46,8 @@ class ReviewCritique(BaseModel):
     checklist: list[ChecklistItem]
     quality_score: float  # 0.0–1.0; below 0.8 triggers revision
     needs_revision: bool
+
+
+class RevisedDocuments(BaseModel):
+    cv_latex: str
+    cover_letter_latex: str
